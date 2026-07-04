@@ -1,0 +1,154 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="Public/style.css">
+</head>
+
+<body>
+
+    <main class="app-shell">
+        <div class="todo-app" id="todo-app">
+
+            <!-- ============ HEADER ============ -->
+            <header class="app-header">
+                <span class="app-eyebrow">Aarush</span>
+                <h1 class="app-title" id="app-title">To-Do List</h1>
+                <!-- JS (optional): replace with today's real date, e.g. new Date().toDateString() -->
+                <p class="app-date" id="app-date">Saturday, July 4, 2026</p>
+            </header>
+
+            <!-- ============ TASK INPUT SECTION ============ -->
+            <!-- JS: Add tasks — on submit, preventDefault(), read #task-input and #task-date,
+           push a new task object into the tasks array, then re-render #task-list -->
+            <section class="task-input-section" aria-label="Add a new task">
+                <form id="task-form" class="task-form" novalidate>
+
+                    <div class="field-group field-group--text">
+                        <label for="task-input" class="visually-hidden">Task name</label>
+                        <input type="text" id="task-input" name="task-input" class="task-input"
+                            placeholder="What needs to get done?" autocomplete="off" required>
+                    </div>
+
+                    <div class="field-group field-group--date">
+                        <label for="task-date" class="visually-hidden">Due date</label>
+                        <input type="date" id="task-date" name="task-date" class="task-date-input">
+                    </div>
+
+                    <button type="submit" id="add-task-btn" class="btn btn--primary">
+                        <span class="btn-label">Add Task</span>
+                    </button>
+
+                </form>
+            </section>
+
+            <!-- ============ TASK CONTROLS ============ -->
+            <section class="task-controls" aria-label="Task controls">
+
+                <div class="sort-control">
+                    <label for="sort-select" class="sort-label">Sort By</label>
+                    <!-- JS: Sort tasks — on change, read this value ("date-desc" / "date-asc"),
+               reorder the tasks array by due date, then re-render #task-list -->
+                    <select id="sort-select" name="sort-select" class="sort-select">
+                        <option value="date-desc">Date (Newest First)</option>
+                        <option value="date-asc">Date (Oldest First)</option>
+                        <option value="time-added">Time Added</option>
+                    </select>
+                </div>
+
+                <!-- JS: Update this number whenever a task is added or deleted -->
+                <div class="task-counter" id="task-counter">
+                    <span class="task-counter-number" id="task-count">4</span>
+                    <span class="task-counter-label">tasks</span>
+                </div>
+
+            </section>
+
+            <!-- ============ TASK LIST ============ -->
+            <section class="task-list-section" aria-label="Task list">
+
+                <!-- JS: Render — this <ul> is the render target. On every add / delete / sort
+             action, clear its contents and rebuild the <li> elements from the tasks array -->
+                <ul class="task-list" id="task-list">
+
+                    <!-- Sample task items below are static placeholders — JS will generate these -->
+
+                    <!-- JS: Delete — each .delete-btn should read the closest .task-item's
+               data-id and remove that task from the array, then re-render -->
+                    <li class="task-item" data-id="sample-1">
+                        <input type="checkbox" class="task-status" id="task-status-1"
+                            aria-label="Mark 'Finish wireframes for the client review' complete">
+                        <div class="task-details">
+                            <span class="task-name">Finish wireframes for the client review</span>
+                            <span class="task-due"><span class="task-due-icon" aria-hidden="true"></span>Jul 08,
+                                2026</span>
+                        </div>
+                        <button type="button" class="delete-btn" id="delete-btn-1"
+                            aria-label="Delete task: Finish wireframes for the client review">&times;</button>
+                    </li>
+
+                    <li class="task-item" data-id="sample-2">
+                        <input type="checkbox" class="task-status" id="task-status-2"
+                            aria-label="Mark 'Reply to internship application emails' complete">
+                        <div class="task-details">
+                            <span class="task-name">Reply to internship application emails</span>
+                            <span class="task-due"><span class="task-due-icon" aria-hidden="true"></span>Jul 10,
+                                2026</span>
+                        </div>
+                        <button type="button" class="delete-btn" id="delete-btn-2"
+                            aria-label="Delete task: Reply to internship application emails">&times;</button>
+                    </li>
+
+                    <li class="task-item" data-id="sample-3">
+                        <input type="checkbox" class="task-status" id="task-status-3" checked
+                            aria-label="Mark 'Push latest commits and update README' complete">
+                        <div class="task-details">
+                            <span class="task-name">Push latest commits and update README</span>
+                            <span class="task-due"><span class="task-due-icon" aria-hidden="true"></span>Jul 04,
+                                2026</span>
+                        </div>
+                        <button type="button" class="delete-btn" id="delete-btn-3"
+                            aria-label="Delete task: Push latest commits and update README">&times;</button>
+                    </li>
+
+                    <li class="task-item" data-id="sample-4">
+                        <input type="checkbox" class="task-status" id="task-status-4"
+                            aria-label="Mark 'Buy groceries for the week' complete">
+                        <div class="task-details">
+                            <span class="task-name">Buy groceries for the week</span>
+                            <span class="task-due"><span class="task-due-icon" aria-hidden="true"></span>Jul 12,
+                                2026</span>
+                        </div>
+                        <button type="button" class="delete-btn" id="delete-btn-4"
+                            aria-label="Delete task: Buy groceries for the week">&times;</button>
+                    </li>
+
+                </ul>
+
+                <!-- JS: Toggle visibility of this element — show it only when the tasks array is empty -->
+                <p class="empty-state" id="empty-state" hidden>Nothing on your list yet. Add a task above to get
+                    started.</p>
+
+            </section>
+
+            <!-- ============ FOOTER ============ -->
+            <footer class="app-footer">
+                <!-- JS: Update this count to reflect tasks whose checkbox is unchecked -->
+                <p class="footer-note"><span id="tasks-remaining-count">3</span> tasks remaining</p>
+            </footer>
+
+        </div>
+    </main>
+    <!-- <script src="app.js"></script> -->
+</body>
+
+</html>
