@@ -1,44 +1,58 @@
 /* ==========================================================================
-   To-Do List — stylesheet
-   Theme: "Daily Planner" — a paper-card task list with a notebook margin
-   rule running through the list and monospace date stamps.
+   DAILY PLANNER TO-DO LIST — STYLESHEET
+   A paper-card task list featuring a notebook margin rule, monospace 
+   date stamps, and modern CSS pseudo-class states.
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS (CSS Variables)
+   Centralized values for colors, typography, sizing, and motion. 
+   Modifying these will update the theme globally.
+   -------------------------------------------------------------------------- */
 :root {
-  /* Color */
-  --bg: #EBEEF3;
-  --paper: #FBFAF7;
-  --ink: #21262C;
-  --ink-soft: #4A5058;
-  --muted: #7A8090;
-  --accent: #2F6F5E;
-  --accent-dark: #204A3F;
-  --accent-soft: #E3EFEA;
-  --margin-line: #E7B6AC;
-  --line: #E4E1D9;
-  --line-strong: #D8D4C9;
-  --danger: #B3483A;
-  --danger-soft: #F8E7E3;
+  /* Core Palette: Inspired by physical stationery */
+  --bg: #EBEEF3;              /* Page background: cool light gray */
+  --paper: #FBFAF7;           /* Card background: warm off-white */
+  --ink: #21262C;             /* Primary text: soft black */
+  --ink-soft: #4A5058;        /* Secondary text: dark gray */
+  --muted: #7A8090;           /* Tertiary text/borders: medium gray */
+  
+  /* Accents: Vintage green and notebook pink */
+  --accent: #2F6F5E;          /* Primary brand color */
+  --accent-dark: #204A3F;     /* Hover states for primary color */
+  --accent-soft: #E3EFEA;     /* Background for date badges */
+  --margin-line: #E7B6AC;     /* The vertical red/pink notebook rule */
+  
+  /* Borders & Feedback */
+  --line: #E4E1D9;            /* Subtle dividers */
+  --line-strong: #D8D4C9;     /* Input borders */
+  --danger: #B3483A;          /* Delete button icon */
+  --danger-soft: #F8E7E3;     /* Delete button hover background */
 
-  /* Radius & shadow */
-  --radius-lg: 22px;
-  --radius-md: 12px;
-  --radius-sm: 9px;
+  /* Layout Constants */
+  --radius-lg: 22px;          /* Main card corners */
+  --radius-md: 12px;          /* Empty state corners */
+  --radius-sm: 9px;           /* Inputs and buttons */
+  
+  /* Shadows & Focus Rings */
   --shadow-card: 0 24px 60px -24px rgba(33, 38, 44, 0.30), 0 2px 10px rgba(33, 38, 44, 0.06);
   --ring: 0 0 0 4px var(--accent-soft);
 
-  /* Type */
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+  /* Typography */
+  --font-display: "Fraunces", Georgia, serif;                    /* Headings */
+  --font-body: "Work Sans", -apple-system, sans-serif;           /* Standard UI text */
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;        /* Dates and meta text */
 
-  /* Motion */
+  /* Animation */
   --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
-/* ============ Reset ============ */
+/* --------------------------------------------------------------------------
+   2. BROWSER RESET & ACCESSIBILITY
+   Establishing a consistent baseline across all browsers.
+   -------------------------------------------------------------------------- */
 * {
-  box-sizing: border-box;
+  box-sizing: border-box; /* Includes padding/borders in element total width/height */
 }
 
 body {
@@ -46,31 +60,14 @@ body {
 }
 
 ul {
-  list-style: none;
+  list-style: none; /* Removes default bullet points from the task list */
 }
 
 button {
-  font: inherit;
+  font: inherit; /* Forces buttons to inherit the body font */
 }
 
-/* ============ Base ============ */
-body {
-  font-family: var(--font-body);
-  color: var(--ink);
-  background-color: var(--bg);
-  background-image: radial-gradient(rgba(33, 38, 44, 0.07) 1px, transparent 1px);
-  background-size: 22px 22px;
-  -webkit-font-smoothing: antialiased;
-}
-
-.app-shell {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 48px 20px;
-}
-
+/* Screen-reader only class. Hides elements visually but keeps them readable by assistive tech. */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -83,7 +80,35 @@ body {
   border: 0;
 }
 
-/* ============ Card ============ */
+/* --------------------------------------------------------------------------
+   3. GLOBAL BASE STYLES
+   Setting up the viewport background and default typography.
+   -------------------------------------------------------------------------- */
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--bg);
+  /* Creates a subtle dotted grid background using radial gradients */
+  background-image: radial-gradient(rgba(33, 38, 44, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-font-smoothing: antialiased; /* Crisper text rendering on macOS */
+}
+
+/* The outer wrapper that centers the application card on the screen */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+}
+
+/* --------------------------------------------------------------------------
+   4. MAIN LAYOUT COMPONENTS
+   The primary card container and its structural sections.
+   -------------------------------------------------------------------------- */
+
+/* The main planner card */
 .todo-app {
   width: 100%;
   max-width: 640px;
@@ -94,6 +119,7 @@ body {
   position: relative;
 }
 
+/* Decorative gradient stripe across the very top of the card */
 .todo-app::before {
   content: "";
   display: block;
@@ -101,7 +127,7 @@ body {
   background: linear-gradient(90deg, var(--accent) 0%, var(--accent-dark) 100%);
 }
 
-/* ============ Header ============ */
+/* Header Section */
 .app-header {
   padding: 38px 44px 22px;
 }
@@ -118,7 +144,7 @@ body {
 
 .app-title {
   font-family: var(--font-display);
-  font-size: clamp(2.1rem, 5vw, 2.7rem);
+  font-size: clamp(2.1rem, 5vw, 2.7rem); /* Fluid typography: scales with viewport */
   font-weight: 600;
   letter-spacing: -0.01em;
   margin: 6px 0 4px;
@@ -132,17 +158,21 @@ body {
   margin: 0;
 }
 
-/* ============ Task input section ============ */
+/* --------------------------------------------------------------------------
+   5. FORMS & INPUTS
+   Styling the task creation area.
+   -------------------------------------------------------------------------- */
 .task-input-section {
   padding: 0 44px 26px;
 }
 
 .task-form {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Allows inputs to stack on smaller screens */
   gap: 12px;
 }
 
+/* Flex sizing logic for inputs: Text takes up remaining space, Date stays smaller */
 .field-group--text {
   flex: 1 1 220px;
 }
@@ -151,6 +181,7 @@ body {
   flex: 0 1 170px;
 }
 
+/* Shared input styling */
 .task-input,
 .task-date-input {
   width: 100%;
@@ -174,6 +205,7 @@ body {
   color: #A5AAB4;
 }
 
+/* Interactive Input States */
 .task-input:hover,
 .task-date-input:hover {
   border-color: var(--muted);
@@ -183,9 +215,10 @@ body {
 .task-date-input:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: var(--ring);
+  box-shadow: var(--ring); /* Custom focus ring using box-shadow */
 }
 
+/* Buttons */
 .btn {
   border: none;
   border-radius: var(--radius-sm);
@@ -200,17 +233,17 @@ body {
   font-weight: 600;
   font-size: 15px;
   padding: 14px 24px;
-  flex: 0 0 auto;
+  flex: 0 0 auto; /* Prevents button from stretching */
 }
 
 .btn--primary:hover {
   background: var(--accent-dark);
-  transform: translateY(-1px);
+  transform: translateY(-1px); /* Slight lift effect */
   box-shadow: 0 10px 20px -10px rgba(32, 74, 63, 0.6);
 }
 
 .btn--primary:active {
-  transform: translateY(0);
+  transform: translateY(0); /* Pushes button back down when clicked */
 }
 
 .btn--primary:focus-visible {
@@ -218,7 +251,10 @@ body {
   outline-offset: 3px;
 }
 
-/* ============ Task controls ============ */
+/* --------------------------------------------------------------------------
+   6. TASK LIST METADATA & CONTROLS
+   Sorting dropdowns and task counts.
+   -------------------------------------------------------------------------- */
 .task-controls {
   padding: 18px 44px 22px;
   border-bottom: 1px dashed var(--line-strong);
@@ -243,13 +279,15 @@ body {
   color: var(--muted);
 }
 
+/* Custom Dropdown Styling */
 .sort-select {
   -webkit-appearance: none;
-  appearance: none;
+  appearance: none; /* Hides default browser dropdown arrow */
   padding: 9px 34px 9px 14px;
   border: 1.5px solid var(--line-strong);
   border-radius: var(--radius-sm);
   background-color: #ffffff;
+  /* Inline SVG for a custom chevron arrow */
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1L6 6L11 1' stroke='%237A8090' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
   background-repeat: no-repeat;
   background-position: right 12px center;
@@ -260,54 +298,33 @@ body {
   transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
 }
 
-.sort-select:hover {
-  border-color: var(--muted);
-}
+.sort-select:hover { border-color: var(--muted); }
+.sort-select:focus { outline: none; border-color: var(--accent); box-shadow: var(--ring); }
 
-.sort-select:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: var(--ring);
-}
+/* Counter Typography */
+.task-counter { display: flex; align-items: baseline; gap: 6px; font-family: var(--font-mono); }
+.task-counter-number { font-size: 20px; font-weight: 600; color: var(--accent-dark); }
+.task-counter-label { font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 
-.task-counter {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  font-family: var(--font-mono);
-}
-
-.task-counter-number {
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--accent-dark);
-}
-
-.task-counter-label {
-  font-size: 11.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-/* ============ Task list ============ */
-.task-list-section {
-  padding-bottom: 6px;
-}
+/* --------------------------------------------------------------------------
+   7. TASK LIST ITEMS & CHECKBOXES
+   The core list layout, including the vintage notebook margin line.
+   -------------------------------------------------------------------------- */
+.task-list-section { padding-bottom: 6px; }
 
 .task-list {
   margin: 0;
   padding: 6px 44px 4px;
-  position: relative;
+  position: relative; /* Required to anchor the absolute ::before pseudo-element */
 }
 
-/* The notebook margin rule running behind the checkboxes */
+/* THE NOTEBOOK MARGIN: A decorative line running down the entire list */
 .task-list::before {
   content: "";
   position: absolute;
   top: 4px;
   bottom: 4px;
-  left: 64px;
+  left: 64px; /* Placed exactly between the checkboxes and the text */
   width: 2px;
   background: var(--margin-line);
   border-radius: 2px;
@@ -323,14 +340,16 @@ body {
   position: relative;
 }
 
-.task-item:last-child {
-  border-bottom: none;
-}
+.task-item:last-child { border-bottom: none; }
 
-/* Custom circular checkbox */
+/* 
+   CUSTOM CHECKBOX
+   We hide the default OS checkbox using `appearance: none` and style the 
+   input itself as a circle. 
+*/
 .task-status {
   -webkit-appearance: none;
-  appearance: none;
+  appearance: none; 
   width: 20px;
   height: 20px;
   margin: 2px 0 0;
@@ -343,24 +362,15 @@ body {
   transition: background-color 0.15s var(--ease), border-color 0.15s var(--ease);
 }
 
-.task-status:hover {
-  border-color: var(--accent-dark);
-}
+.task-status:hover { border-color: var(--accent-dark); }
+.task-status:focus-visible { outline: none; box-shadow: var(--ring); }
+.task-status:checked { background: var(--accent); border-color: var(--accent); }
 
-.task-status:focus-visible {
-  outline: none;
-  box-shadow: var(--ring);
-}
-
-.task-status:checked {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
+/* The checkmark symbol injected when the box is checked */
 .task-status:checked::after {
-  content: "\2713";
+  content: "\2713"; /* Unicode checkmark */
   position: absolute;
-  inset: 0;
+  inset: 0; /* Shorthand for top:0, right:0, bottom:0, left:0 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -370,7 +380,7 @@ body {
 }
 
 .task-details {
-  flex: 1;
+  flex: 1; /* Pushes the delete button all the way to the right */
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -381,16 +391,22 @@ body {
   font-size: 15.5px;
   line-height: 1.4;
   color: var(--ink);
-  word-break: break-word;
+  word-break: break-word; /* Prevents long unbreakable strings from breaking layout */
 }
 
-/* Strike through the name once its checkbox is checked (native CSS, no JS needed) */
+/* 
+   COMPLETED STATE TRICK
+   Uses the modern `:has()` selector. If the parent `.task-item` contains 
+   a checked `.task-status` checkbox, apply these styles to the `.task-name`.
+   This removes the need for JavaScript to toggle a 'completed' class! 
+*/
 .task-item:has(.task-status:checked) .task-name {
   color: var(--muted);
   text-decoration: line-through;
   text-decoration-color: var(--muted);
 }
 
+/* Date Badge on Tasks */
 .task-due {
   display: inline-flex;
   align-items: center;
@@ -412,6 +428,7 @@ body {
   flex-shrink: 0;
 }
 
+/* Action Buttons */
 .delete-btn {
   appearance: none;
   background: transparent;
@@ -430,16 +447,10 @@ body {
   transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
 }
 
-.delete-btn:hover {
-  background: var(--danger-soft);
-  color: var(--danger);
-}
+.delete-btn:hover { background: var(--danger-soft); color: var(--danger); }
+.delete-btn:focus-visible { outline: 2px solid var(--danger); outline-offset: 2px; }
 
-.delete-btn:focus-visible {
-  outline: 2px solid var(--danger);
-  outline-offset: 2px;
-}
-
+/* Displayed when there are no tasks in the list */
 .empty-state {
   margin: 8px 44px 26px;
   padding: 20px;
@@ -450,7 +461,9 @@ body {
   color: var(--muted);
 }
 
-/* ============ Footer ============ */
+/* --------------------------------------------------------------------------
+   8. FOOTER
+   -------------------------------------------------------------------------- */
 .app-footer {
   padding: 20px 44px 32px;
 }
@@ -468,43 +481,41 @@ body {
   font-weight: 600;
 }
 
-/* ============ Responsive ============ */
+/* --------------------------------------------------------------------------
+   9. RESPONSIVE QUERIES
+   Adjusting padding and positioning for smaller screens.
+   -------------------------------------------------------------------------- */
 
-/* Tablet */
+/* Tablet & Smaller Desktop */
 @media (max-width: 720px) {
+  /* Reduce horizontal padding on structural elements */
   .app-header,
   .task-input-section,
   .task-controls,
+  .task-list,
   .app-footer {
     padding-left: 32px;
     padding-right: 32px;
   }
 
-  .task-list {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-
+  /* Shift the decorative notebook line slightly to accommodate new padding */
   .task-list::before {
     left: 52px;
   }
 }
 
-/* Mobile */
+/* Mobile Devices */
 @media (max-width: 480px) {
   .app-shell {
-    padding: 24px 14px;
+    padding: 24px 14px; /* Give the card a bit more breathing room on mobile */
   }
 
+  /* Further reduce internal padding */
   .app-header,
   .task-input-section,
   .task-controls,
+  .task-list,
   .app-footer {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-
-  .task-list {
     padding-left: 22px;
     padding-right: 22px;
   }
@@ -513,6 +524,7 @@ body {
     left: 42px;
   }
 
+  /* Stack the input fields vertically instead of side-by-side */
   .task-form {
     flex-direction: column;
   }
@@ -521,6 +533,7 @@ body {
     flex-basis: auto;
   }
 
+  /* Make the primary button full-width */
   .btn--primary {
     width: 100%;
     padding: 14px 20px;
@@ -539,7 +552,10 @@ body {
   }
 }
 
-/* ============ Reduced motion ============ */
+/* --------------------------------------------------------------------------
+   10. ACCESSIBILITY OVERRIDES
+   Disables animations for users who have requested reduced motion in their OS.
+   -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
