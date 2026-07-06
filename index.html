@@ -11,7 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="Public/style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
@@ -23,28 +23,27 @@
             <header class="app-header">
                 <span class="app-eyebrow">Aarush</span>
                 <h1 class="app-title" id="app-title">To-Do List</h1>
-                <!-- JS (optional): replace with today's real date, e.g. new Date().toDateString() -->
-                <p class="app-date" id="app-date">Saturday, July 4, 2026</p>
+                <p class="appDate" id="appDate"></p>
             </header>
 
             <!-- ============ TASK INPUT SECTION ============ -->
             <!-- JS: Add tasks — on submit, preventDefault(), read #task-input and #task-date,
            push a new task object into the tasks array, then re-render #task-list -->
             <section class="task-input-section" aria-label="Add a new task">
-                <form id="task-form" class="task-form" novalidate>
+                <form id="taskForm" class="task-form" novalidate method="">
 
                     <div class="field-group field-group--text">
-                        <label for="task-input" class="visually-hidden">Task name</label>
-                        <input type="text" id="task-input" name="task-input" class="task-input"
+                        <label for="taskInput" class="visually-hidden">Task name</label>
+                        <input type="text" id="taskInput" name="task-input" class="task-input"
                             placeholder="What needs to get done?" autocomplete="off" required>
                     </div>
 
                     <div class="field-group field-group--date">
-                        <label for="task-date" class="visually-hidden">Due date</label>
-                        <input type="date" id="task-date" name="task-date" class="task-date-input">
+                        <label for="taskDate" class="visually-hidden">Due date</label>
+                        <input type="date" id="taskDate" name="task-date" class="task-date-input">
                     </div>
 
-                    <button type="submit" id="add-task-btn" class="btn btn--primary">
+                    <button type="submit" id="addTaskBtn" class="btn btn--primary">
                         <span class="btn-label">Add Task</span>
                     </button>
 
@@ -79,9 +78,6 @@
                 <!-- JS: Render — this <ul> is the render target. On every add / delete / sort
              action, clear its contents and rebuild the <li> elements from the tasks array -->
                 <ul class="task-list" id="task-list">
-
-                    <!-- Sample task items below are static placeholders — JS will generate these -->
-
                     <!-- JS: Delete — each .delete-btn should read the closest .task-item's
                data-id and remove that task from the array, then re-render -->
                     <li class="task-item" data-id="sample-1">
@@ -148,7 +144,7 @@
 
         </div>
     </main>
-    <!-- <script src="app.js"></script> -->
+    <script src="/app.js"></script>
 </body>
 
 </html>
