@@ -1,14 +1,5 @@
-/* ==========================================================================
-   DAILY PLANNER TO-DO LIST — STYLESHEET
-   A paper-card task list featuring a notebook margin rule, monospace 
-   date stamps, and modern CSS pseudo-class states.
-   ========================================================================== */
+/* DAILY PLANNER TO-DO LIST — STYLESHEET */
 
-/* --------------------------------------------------------------------------
-   1. DESIGN TOKENS (CSS Variables)
-   Centralized values for colors, typography, sizing, and motion. 
-   Modifying these will update the theme globally.
-   -------------------------------------------------------------------------- */
 :root {
   /* Core Palette: Inspired by physical stationery */
   --bg: #EBEEF3;              /* Page background: cool light gray */
@@ -80,10 +71,8 @@ button {
   border: 0;
 }
 
-/* --------------------------------------------------------------------------
-   3. GLOBAL BASE STYLES
-   Setting up the viewport background and default typography.
-   -------------------------------------------------------------------------- */
+/* Setting up the viewport background and default typography. */
+
 body {
   font-family: var(--font-body);
   color: var(--ink);
@@ -91,7 +80,6 @@ body {
   /* Creates a subtle dotted grid background using radial gradients */
   background-image: radial-gradient(rgba(33, 38, 44, 0.07) 1px, transparent 1px);
   background-size: 22px 22px;
-  -webkit-font-smoothing: antialiased; /* Crisper text rendering on macOS */
 }
 
 /* The outer wrapper that centers the application card on the screen */
@@ -103,10 +91,7 @@ body {
   padding: 48px 20px;
 }
 
-/* --------------------------------------------------------------------------
-   4. MAIN LAYOUT COMPONENTS
-   The primary card container and its structural sections.
-   -------------------------------------------------------------------------- */
+/* The primary card container and its structural sections. */
 
 /* The main planner card */
 .todo-app {
@@ -158,10 +143,8 @@ body {
   margin: 0;
 }
 
-/* --------------------------------------------------------------------------
-   5. FORMS & INPUTS
-   Styling the task creation area.
-   -------------------------------------------------------------------------- */
+/* Styling the task creation area. */
+
 .task-input-section {
   padding: 0 44px 26px;
 }
@@ -251,10 +234,8 @@ body {
   outline-offset: 3px;
 }
 
-/* --------------------------------------------------------------------------
-   6. TASK LIST METADATA & CONTROLS
-   Sorting dropdowns and task counts.
-   -------------------------------------------------------------------------- */
+/* Sorting dropdowns and task counts. */
+
 .task-controls {
   padding: 18px 44px 22px;
   border-bottom: 1px dashed var(--line-strong);
@@ -306,10 +287,9 @@ body {
 .task-counter-number { font-size: 20px; font-weight: 600; color: var(--accent-dark); }
 .task-counter-label { font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 
-/* --------------------------------------------------------------------------
-   7. TASK LIST ITEMS & CHECKBOXES
-   The core list layout, including the vintage notebook margin line.
-   -------------------------------------------------------------------------- */
+
+/* The core list layout, including the vintage notebook margin line. */
+
 .task-list-section { padding-bottom: 6px; }
 
 .task-list {
