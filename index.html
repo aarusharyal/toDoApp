@@ -18,8 +18,6 @@
 
     <main class="app-shell">
         <div class="todo-app" id="todo-app">
-
-            <!-- ============ HEADER ============ -->
             <header class="app-header">
                 <span class="app-eyebrow">Aarush</span>
                 <h1 class="app-title" id="app-title">To-Do List</h1>
@@ -77,10 +75,10 @@
 
                 <!-- JS: Render — this <ul> is the render target. On every add / delete / sort
              action, clear its contents and rebuild the <li> elements from the tasks array -->
-                <ul class="task-list" id="task-list">
+                <ul class="task-list" id="taskList">
                     <!-- JS: Delete — each .delete-btn should read the closest .task-item's
                data-id and remove that task from the array, then re-render -->
-                    <li class="task-item" data-id="sample-1">
+                    <li class="taskItem" data-id="sample-1">
                         <input type="checkbox" class="task-status" id="task-status-1"
                             aria-label="Mark 'Finish wireframes for the client review' complete">
                         <div class="task-details">

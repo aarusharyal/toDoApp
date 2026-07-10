@@ -4,7 +4,7 @@
   "description": "A Simple App For making a to-do list",
   "license": "ISC",
   "author": "Aarush Aryal",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
