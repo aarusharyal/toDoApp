@@ -42,22 +42,26 @@ taskForm.addEventListener("submit", function (event) {
 
 // Fetch Data And insert into UL
 
-fetch("/data.json")
-  .then((response) => response.json())
-  .then((tasks) => {
-    const taskList = document.getElementById("taskList");
+async function loadTasks() {
+  const taskList = document.getElementById("tasklist");
+
+  try {
+    const response = await fetch("/data.json");
+    if (!response.ok) {
+      throw new Error("Network response error");
+    }
+    const tasks = await response.json();
     taskList.innerHTML = "";
     tasks.forEach((task) => {
       const li = document.createElement("li");
-      li.className = "taskItem";
-      li.innerHTML = `
-        <input type="checkbox" class="task-status" id="task-status-${task.id}">
-        <div class="task-details">
-          <span class="task-name">${task.task}</span>
-          <span class="task-due"><span class="task-due-icon" aria-hidden="true"></span>${task.date}</span>
-        </div>
-      `;
-      taskList.appendChild(li);
+
+      li.textContent = task;
+
+      listContainer.appendChild(li);
     });
-  })
-  .catch((error) => console.error("Error fetching tasks:", error));
+  } catch (error) {
+    console.error("Error fetching tasks:", error);
+    listContainer.innerHTML = "<li>Error loading tasks</li>";
+  }
+}
+loadTasks();

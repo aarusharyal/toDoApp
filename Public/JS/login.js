@@ -10,19 +10,21 @@ form.addEventListener("submit", function (e) {
 
 function validateForm() {
   const usernameValue = username.value.trim();
-  //   const emailValue = username.value.trim();
+  const emailValue = username.value.trim();
   const passwordValue = password.value.trim();
-  //   const confirmPasswordValue = password.value.trim();
+  const confirmPasswordValue = password.value.trim();
 
   if (usernameValue === "") {
     showError(username, "Username is required");
   } else {
     showSuccess(username);
+    return true;
   }
   if (passwordValue === "") {
     showError(password, "Password is required");
   } else {
     showSuccess(password);
+    return true;
   }
 }
 
@@ -41,7 +43,14 @@ function showSuccess(input) {
 }
 
 function submitForm(event) {
-  event.preventDefault();
   validateForm();
-  location.href = "index.html";
+  if (validateForm() == true) {
+    event.preventDefault();
+    location.href = "index.html";
+    submitForm();
+  } else {
+    event.preventDefault();
+    showError(username, "Please Fill the required fields");
+    showError(password, "Please Fill the required fields");
+  }
 }
