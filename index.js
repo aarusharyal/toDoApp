@@ -7,7 +7,8 @@ import fs from "fs";
 const PORT = 3000;
 app.use(express.json());
 
-app.use(express.static("Public"));
+app.use(express.static("Public/JS"));
+app.use(express.static("Public/CSS"));
 app.get("/", (req, res) => {
   const absoluteValue = path.resolve("login.html");
   res.sendFile(absoluteValue);
@@ -21,7 +22,6 @@ app.get("/login.html", (req, res) => {
   const absoluteValue = path.resolve("login.html");
   res.sendFile(absoluteValue);
 });
-
 app.get("/index.html", (req, res) => {
   const absoluteValue = path.resolve("index.html");
   res.sendFile(absoluteValue);
@@ -38,10 +38,9 @@ app.post("/api/tasks", (req, res) => {
     let tasks = [];
     if (!err && data) {
       tasks = JSON.parse(data);
-      tasks.push(newTask); // ← only pushed inside this if-block
+      tasks.push(newTask);
     }
     fs.writeFile("data.json", JSON.stringify(tasks), (err) => {
-      //   res.status(201).json(newTask)
       if (err) {
         console.error("Error writing to file:", err);
         res.status(500).send("Error Saving Task", err);
