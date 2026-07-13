@@ -78,7 +78,7 @@
                 <ul class="task-list" id="taskList">
                     <!-- JS: Delete — each .delete-btn should read the closest .task-item's
                data-id and remove that task from the array, then re-render -->
-                    <li class="task-item" data-id="sample-1">
+                    <li class="task-item" data-id="sample-1" id="userTasks">
                         <input type="checkbox" class="task-status" id="task-status-1"
                             aria-label="Mark 'Reply to internship application emails' complete">
                         <div class="task-details">
@@ -89,43 +89,6 @@
                         <button type="button" class="delete-btn" id="delete-btn-1"
                             aria-label="Delete task: Reply to internship application emails">&times;</button>
                     </li>
-
-                    <li class="task-item" data-id="sample-2">
-                        <input type="checkbox" class="task-status" id="task-status-2"
-                            aria-label="Mark 'Reply to internship application emails' complete">
-                        <div class="task-details">
-                            <span class="task-name">Reply to internship application emails</span>
-                            <span class="task-due"><span class="task-due-icon" aria-hidden="true"></span>Jul 10,
-                                2026</span>
-                        </div>
-                        <button type="button" class="delete-btn" id="delete-btn-2"
-                            aria-label="Delete task: Reply to internship application emails">&times;</button>
-                    </li>
-
-                    <li class="task-item" data-id="sample-3">
-                        <input type="checkbox" class="task-status" id="task-status-3"
-                            aria-label="Mark 'Push latest commits and update README' complete">
-                        <div class="task-details">
-                            <span class="task-name">Push latest commits and update README</span>
-                            <span class="task-due"><span class="task-due-icon" aria-hidden="true"></span>Jul 04,
-                                2026</span>
-                        </div>
-                        <button type="button" class="delete-btn" id="delete-btn-3"
-                            aria-label="Delete task: Push latest commits and update README">&times;</button>
-                    </li>
-
-                    <li class="task-item" data-id="sample-4">
-                        <input type="checkbox" class="task-status" id="task-status-4"
-                            aria-label="Mark 'Buy groceries for the week' complete">
-                        <div class="task-details">
-                            <span class="task-name">Buy groceries for the week</span>
-                            <span class="task-due"><span class="task-due-icon" aria-hidden="true"></span>Jul 12,
-                                2026</span>
-                        </div>
-                        <button type="button" class="delete-btn" id="delete-btn-4"
-                            aria-label="Delete task: Buy groceries for the week">&times;</button>
-                    </li>
-
                 </ul>
 
                 <!-- JS: Toggle visibility of this element — show it only when the tasks array is empty -->
