@@ -6,23 +6,23 @@ import fs from "fs";
 
 const PORT = 3000;
 app.use(express.json());
-app.use(express.static("Public/JS"));
-app.use(express.static("Public/CSS"));
+app.use(express.static("View/JS"));
+app.use(express.static("View/CSS"));
 
 app.get("/", (req, res) => {
-  const absoluteValue = path.resolve("login.html");
+  const absoluteValue = path.resolve("./View/Html/login.html");
   res.sendFile(absoluteValue);
 });
 app.get("/login.html", (req, res) => {
-  const absoluteValue = path.resolve("login.html");
+  const absoluteValue = path.resolve("./View/Html/login.html");
   res.sendFile(absoluteValue);
 });
 app.get("/register.html", (req, res) => {
-  const absoluteValue = path.resolve("register.html");
+  const absoluteValue = path.resolve("./View/Html/register.html");
   res.sendFile(absoluteValue);
 });
 app.get("/index.html", (req, res) => {
-  const absoluteValue = path.resolve("index.html");
+  const absoluteValue = path.resolve("./View/Html/index.html");
   res.sendFile(absoluteValue);
 });
 
@@ -46,13 +46,13 @@ app.listen(PORT, () => {
 app.post("/api/tasks", (req, res) => {
   const newTask = { completed: false, ...req.body };
   console.log("Received task:", newTask);
-  fs.readFile("data.json", "utf-8", (err, data) => {
+  fs.readFile("./model/data.json", "utf-8", (err, data) => {
     let tasks = [];
     if (!err && data) {
       tasks = JSON.parse(data);
     }
     tasks.push(newTask);
-    fs.writeFile("data.json", JSON.stringify(tasks), (err) => {
+    fs.writeFile("./model/data.json", JSON.stringify(tasks), (err) => {
       if (err) {
         console.error("Error writing to file:", err);
         res.status(500).send("Error Saving Task");
@@ -66,7 +66,7 @@ app.post("/api/tasks", (req, res) => {
 
 app.patch("/api/tasks/:id", (req, res) => {
   const { id } = req.params;
-  fs.readFile("data.json", "utf-8", (err, data) => {
+  fs.readFile("./model/data.json", "utf-8", (err, data) => {
     if (err) {
       console.error("Error reading file:", err);
       return res.status(500).send("Error Reading File");
@@ -79,7 +79,7 @@ app.patch("/api/tasks/:id", (req, res) => {
     if (typeof req.body.completed === "boolean") {
       task.completed = req.body.completed;
     }
-    fs.writeFile("data.json", JSON.stringify(tasks), (err) => {
+    fs.writeFile("./model/data.json", JSON.stringify(tasks), (err) => {
       if (err) {
         console.error("Error writing to file:", err);
         return res.status(500).send("Error Saving Task");
