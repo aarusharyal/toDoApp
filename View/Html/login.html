@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/login.css">
+    <style>
+        .error-message {
+            display: none;
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -17,13 +23,13 @@
             <div class="formContainer">
                 <label for="loginUsername">Username / Email</label>
                 <input type="text" id="loginUsername" name="username">
-                <small class="error-message" style="display:none; color: red;"></small>
+                <small class="error-message"></small>
             </div>
 
             <div class="formContainer">
                 <label for="loginPassword">Password</label>
                 <input type="password" id="loginPassword" name="password">
-                <small class="error-message" style="display:none; color: red;"></small>
+                <small class="error-message"></small>
             </div>
 
             <button type="submit" value="Login" onclick="submitForm(event)">Login</button>

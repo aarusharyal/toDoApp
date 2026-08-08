@@ -1,0 +1,20 @@
+[
+    {
+        "completed": false,
+        "id": "01",
+        "task": "Eat Food",
+        "date": "2026-07-16"
+    },
+    {
+        "completed": false,
+        "id": "02",
+        "task": "Do something",
+        "date": "2026-09-29"
+    },
+    {
+        "completed": false,
+        "id": "03",
+        "task": "Make Things",
+        "date": "2026-07-09"
+    }
+]
