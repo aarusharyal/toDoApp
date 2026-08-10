@@ -1,13 +1,11 @@
 import express from "express";
-const app = express();
+import app from "./app.js";
+// const app = express();
 import http from "http";
 import path from "path";
 import fs from "fs";
 
 const PORT = 3000;
-app.use(express.json());
-app.use(express.static("View/JS"));
-app.use(express.static("View/CSS"));
 
 app.get("/", (req, res) => {
   const absoluteValue = path.resolve("./View/Html/login.html");
