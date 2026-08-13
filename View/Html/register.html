@@ -5,36 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="/register.css">
+    <link rel="stylesheet" href="register.css">
 </head>
 
 <body>
 
-    <div class="container">
-        <h2>Registration</h2>
+    <div class="register-container">
+        <div class="register-box">
 
-        <form action="#">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username">
+            <h1>Create Account</h1>
+            <p class="subtitle">Register to get started</p>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
+            <form action="/register" method="post" id="formRegistration">
+                <p id="serverError" class="error-message"></p>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password">
+                <div class="input-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                </div>
 
-            <label for="confirm">Confirm Password</label>
-            <input type="password" id="confirm" name="confirm">
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
 
-            <input type="submit" value="Register">
-        </form>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                </div>
 
-        <p>
-            Already have an account?
-            <a href="login.html">Login Here</a>
-        </p>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password"
+                        placeholder="Confirm your password" required>
+                </div>
+
+                <button type="submit">Create Account</button>
+
+            </form>
+
+            <p class="login-link">
+                Already have an account?
+                <a href="./login">Login</a>
+            </p>
+
+        </div>
     </div>
 
+    <script src="./register.js"></script>
 </body>
 
 </html>
