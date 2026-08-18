@@ -6,3 +6,6 @@ const router = Router();
 router.get("/", getLogin);
 router.get("/login", getLogin);
 router.get("/register", getRegister);
+
+
+export default router;
