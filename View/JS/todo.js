@@ -60,10 +60,9 @@ function updateCounts() {
 
 async function loadTasks() {
   const taskListContainer = document.getElementById("taskList");
-  // const listcontainer = document.getElementById("taskList");
 
   try {
-    const response = await fetch("http://localhost:3000/data.json");
+    const response = await fetch("http://localhost:3000/tasks.json");
     if (!response.ok) {
       throw new Error("Network response error");
     }
