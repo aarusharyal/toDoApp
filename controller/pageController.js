@@ -1,4 +1,5 @@
 import path from "path";
+import fs from "fs";
 
 export const getLogin = (req, res) => {
   const absoluteValue = path.resolve("./View/Html/login.html");
