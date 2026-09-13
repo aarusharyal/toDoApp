@@ -17,7 +17,10 @@ export const getTodo = (req, res) => {
 };
 
 export const apiTasks = (req, res) => {
-  const newTask = { completed: false, ...req.body };
+  const userId = req.session.user.id;
+  // userId is always taken from the session, never from req.body,
+  // so a client can't create or claim a task under someone else's ID.
+  const newTask = { completed: false, ...req.body, userId };
   console.log("Received task:", newTask);
   fs.readFile("./model/tasks.json", "utf-8", (err, data) => {
     let tasks = [];
