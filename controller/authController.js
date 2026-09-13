@@ -1,4 +1,9 @@
-import { readUsers, writeUsers, findUserByEmail } from "../model/userModel.js";
+import {
+  readUsers,
+  writeUsers,
+  findUserByEmail,
+  generateUniqueUserId,
+} from "../model/userModel.js";
 
 export const register = (req, res) => {
   const { fullname, email, username, password } = req.body;
@@ -8,7 +13,8 @@ export const register = (req, res) => {
     return res.redirect("/register?error=EmailAlreadyExists");
   }
 
-  users.push({ fullname, email, username, password });
+  const id = generateUniqueUserId(users);
+  users.push({ id, fullname, email, username, password });
   writeUsers(users);
 
   res.redirect("/login?registered=true");
@@ -25,6 +31,7 @@ export const login = (req, res) => {
 
   if (user) {
     req.session.user = {
+      id: user.id,
       fullname: user.fullname,
       email: user.email,
       username: user.username,
