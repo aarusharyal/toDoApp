@@ -5,8 +5,8 @@ import crypto from "crypto";
 const DATA_PATH = path.resolve("./model/data.json");
 
 // Generates a random 16-digit numeric string using Node's CSPRNG.
-// The first digit is forced to 1-9 so the result is always exactly
-// 16 digits long (never has a leading zero that would shorten it).
+
+// The first digit is forced to 1-9 so the result is always exactly 16 digits long (never has a leading zero that would shorten it).
 const generateRandomId = () => {
   let id = String(crypto.randomInt(1, 10));
   for (let i = 0; i < 15; i++) {
