@@ -5,7 +5,7 @@ import {
   getTodo,
   apiTasks,
 } from "../controller/pageController.js";
-import { requireAuth } from "../middleware/requireAuth.js";
+import { requireAuth, requireAuthApi } from "../middleware/requireAuth.js";
 
 const router = Router();
 
@@ -15,6 +15,6 @@ router.get("/register", getRegister);
 
 router.get("/dashboard", requireAuth, getTodo);
 
-router.post("/api/tasks", apiTasks);
+router.post("/api/tasks", requireAuthApi, apiTasks);
 
 export default router;
