@@ -1,8 +1,18 @@
 [
   {
+    "id": "1500558657115147",
+    "fullname": "Aarush Aryal",
+    "email": "aryalaarush203@gmail.com",
+    "username": "aarush",
+    "password": "$2b$10$cuEiqiDSTgoVmIrT7uMUv.BMAowVC3kWLBsrBBPR9QA8mhcqL3jsi",
+    "createdAt": "2026-09-15T13:26:30.593Z"
+  },
+  {
+    "id": "3960439943375741",
     "fullname": "Harry Kane",
     "email": "kaneharry@gmail.com",
-    "username": "Harry",
-    "password": "harry@Kane1"
+    "username": "harry",
+    "password": "$2b$10$mZJUCVy6V4e9An7LqxfMcOdSUBeRGfTxJxZkiE/cbJLRvlbqWtq7m",
+    "createdAt": "2026-09-15T13:30:51.919Z"
   }
 ]
