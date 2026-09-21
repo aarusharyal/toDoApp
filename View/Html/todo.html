@@ -19,7 +19,12 @@
     <main class="app-shell">
         <div class="todo-app" id="todo-app">
             <header class="app-header">
-                <span class="app-eyebrow">Aarush</span>
+                <!-- NEW: Flex container to put greeting on left, logout on right -->
+                <div class="header-top">
+                    <span class="app-eyebrow" id="user-greeting">Loading...</span>
+                    <a href="/logout" class="logout-btn">Logout</a>
+                </div>
+            
                 <h1 class="app-title" id="app-title">To-Do List</h1>
                 <p class="appDate" id="appDate"></p>
             </header>
