@@ -37,7 +37,7 @@ export const register = async (req, res) => {
 
     // SECURITY: Check if email already exists
     if (findUserByEmail(users, email)) {
-      console.log("❌ Registration failed: Email already exists:", email);
+      console.log("Registration failed: Email already exists:", email);
       return res.redirect("/register?error=EmailAlreadyExists");
     }
 
@@ -46,7 +46,7 @@ export const register = async (req, res) => {
       (u) => u.username.toLowerCase() === username.toLowerCase(),
     );
     if (existingUsername) {
-      console.log("❌ Registration failed: Username already exists:", username);
+      console.log("Registration failed: Username already exists:", username);
       return res.redirect("/register?error=UsernameAlreadyExists");
     }
 
@@ -81,7 +81,7 @@ export const register = async (req, res) => {
     // Redirect to login with success message
     return res.redirect("/login?registered=true");
   } catch (error) {
-    console.error("❌ Registration error:", error);
+    console.error("Registration error:", error);
     return res.redirect("/register?error=InternalError");
   }
 };
@@ -114,12 +114,12 @@ export const login = async (req, res) => {
     try {
       passwordMatch = await verifyPassword(password, user.password);
     } catch (verifyError) {
-      console.error("❌ Error verifying password:", verifyError);
+      console.error("Error verifying password:", verifyError);
       return res.redirect("/login?error=AuthenticationFailed");
     }
 
     if (!passwordMatch) {
-      console.log("❌ Login failed: Invalid password for user:", email);
+      console.log("Login failed: Invalid password for user:", email);
       return res.redirect("/login?error=InvalidCredentials");
     }
 
@@ -141,18 +141,18 @@ export const login = async (req, res) => {
       // Save session to store (FileStore in this case)
       req.session.save((saveErr) => {
         if (saveErr) {
-          console.error("❌ Session save error:", saveErr);
+          console.error("Session save error:", saveErr);
           return res.redirect("/login?error=SessionError");
         }
 
-        console.log("✅ User logged in successfully:", user.email);
+        console.log("User logged in successfully:", user.email);
 
         // Redirect to dashboard
         return res.redirect("/dashboard");
       });
     });
   } catch (error) {
-    console.error("❌ Login error:", error);
+    console.error("Login error:", error);
     return res.redirect("/login?error=InternalError");
   }
 };
@@ -208,7 +208,7 @@ export const logout = (req, res) => {
       return res.redirect("/login");
     }
   } catch (error) {
-    console.error("❌ Logout error:", error);
+    console.error("Logout error:", error);
     return res.redirect("/login?error=InternalError");
   }
 };
