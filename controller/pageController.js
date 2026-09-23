@@ -6,20 +6,16 @@ export const getLogin = (req, res) => {
   const absoluteValue = path.resolve("./View/Html/login.html");
   res.sendFile(absoluteValue);
 };
-
 export const getRegister = (req, res) => {
   const absoluteValue = path.resolve("./View/Html/register.html");
   res.sendFile(absoluteValue);
 };
-
 export const getTodo = (req, res) => {
   const absoluteValue = path.resolve("./View/Html/todo.html");
   res.sendFile(absoluteValue);
 };
-
 function sanitizeInput(input) {
   if (!input || typeof input !== "string") return "";
-
   const htmlEscapeMap = {
     "&": "&amp;",
     "<": "&lt;",
@@ -28,7 +24,6 @@ function sanitizeInput(input) {
     "'": "&#x27;",
     "/": "&#x2F;",
   };
-
   return input.replace(/[&<>"'\/]/g, (char) => htmlEscapeMap[char]);
 }
 function validateTask(taskInput, taskDate) {
