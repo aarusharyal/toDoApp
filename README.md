@@ -1,6 +1,10 @@
-# toDoApp
+# To-Do App
 
 A simple to-do list application for organizing and tracking daily tasks.
+
+## Overview
+
+To-Do App helps you manage daily tasks by adding new items, marking them as complete, and removing tasks when they are no longer needed.
 
 ## Features
 
@@ -24,6 +28,12 @@ A simple to-do list application for organizing and tracking daily tasks.
 	```
 
 3. Follow the setup instructions for the project's framework or runtime, then start the application.
+
+## Task Management
+
+- Add a task when you need to track something.
+- Mark a task as complete when it is finished.
+- Remove tasks that are no longer needed.
 
 ## Usage
 
