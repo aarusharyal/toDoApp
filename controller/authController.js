@@ -41,7 +41,9 @@ export const register = async (req, res) => {
       return res.redirect("/register?error=EmailAlreadyExists");
     }
 
-    // SECURITY: Check if username already exists
+    // SECURITY: Prevent duplicate usernames to keep accounts unique
+    // Compare usernames case-insensitively so users cannot register
+    // the same name with different casing.
     const existingUsername = users.find(
       (u) => u.username.toLowerCase() === username.toLowerCase(),
     );
