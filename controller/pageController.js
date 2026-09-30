@@ -76,13 +76,18 @@ export const apiTasks = (req, res) => {
     });
   }
   const sanitizedTask = sanitizeInput(taskInput.trim());
-
   const newTask = {
+    // Generate a unique identifier so the task can be safely referenced later.
     id: uuidv4(),
+    // Store the sanitized task text to prevent HTML injection.
     task: sanitizedTask,
+    // Use an empty string when no due date was provided.
     date: taskDate || "",
+    // Associate the task with the authenticated user.
     userId: userId,
+    // New tasks are incomplete by default.
     completed: false,
+    // Record when the task was created.
     createdAt: new Date().toISOString(), // Track when task was created
   };
 
