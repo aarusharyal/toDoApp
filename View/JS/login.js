@@ -30,20 +30,23 @@ function validatePassword(password) {
   if (!password || typeof password !== "string") {
     return "Password is required";
   }
-
   const trimmedPassword = password.trim();
 
+  // Reject blank passwords after trimming whitespace.
   if (trimmedPassword.length === 0) {
     return "Password cannot be empty";
   }
 
+  // Enforce a minimum length for the password.
   if (trimmedPassword.length < 6) {
     return "Password must be at least 6 characters";
   }
 
+  // Password passed all checks.
   return null; // Valid
 }
 
+// Validate email and password fields before the form is submitted.
 function validateForm() {
   const emailValue = emailInput.value;
   const passwordValue = passwordInput.value;
